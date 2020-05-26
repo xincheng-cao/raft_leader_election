@@ -247,16 +247,7 @@ func (rf *Raft) Start(command interface{}) (int, int, bool) {
 	isLeader := true
 
 	// Your code here (4).
-	rf.mu.Lock()
-	defer rf.mu.Unlock()
-	numLogs:= len(rf.logs)
-	index=rf.logs[numLogs-1].Index+1
-	term=rf.curTerm
-	if (rf.status=="leader"){
-		isLeader=true
-		tempLog:=Log{index,term,command}
-		rf.logs=append(rf.logs,tempLog)
-	}else{isLeader=false}
+
 	return index, term, isLeader
 }
 
